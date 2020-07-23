@@ -7,7 +7,10 @@
     </head>
 
     <body>
-        <h1>{{  title  }} Page</h1>
+        <div class="header">
+            <h1>{{  title  }} Page</h1>
+        </div>
+        
         <a href="{{ url_for('home') }}">Home Page</a>
         <a href="{{ url_for('about') }}">About Page</a>
         <a href="{{ url_for('login') }}">Login Page</a>
