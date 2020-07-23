@@ -1,10 +1,17 @@
 <!DOCTYPE html>
+
 <html>
-<head>
-<title>{{ title }} - Page</title>
-</head>
-<body>
-<h1>{{  title  }} Page</h1>
-{% block body_content %}{% endblock %}
-</body>
+    <head>
+        <title>{{ title }} - Page</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    </head>
+
+    <body>
+        <h1>{{  title  }} Page</h1>
+        <a href="{{ url_for('home') }}">Home Page</a>
+        <a href="{{ url_for('about') }}">About Page</a>
+        <a href="{{ url_for('login') }}">Login Page</a>
+        <a href="{{ url_for('register') }}">Register Page</a>
+        {% block body_content %}{% endblock %}
+    </body>
 </html>
