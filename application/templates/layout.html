@@ -11,14 +11,14 @@
             <h1>{{  title  }} Page</h1>
         </div>
         
-        <div class="sidebar">
+        <div class="leftcolumn">
             <a href="{{ url_for('home') }}">Home Page</a>
             <a href="{{ url_for('about') }}">About Page</a>
             <a href="{{ url_for('login') }}">Login Page</a>
             <a href="{{ url_for('register') }}">Register Page</a>
         </div>
         
-        <div class="content">
+        <div class="rightcolumn">
             {% block body_content %}{% endblock %}
         </div>
     </body>
