@@ -11,10 +11,15 @@
             <h1>{{  title  }} Page</h1>
         </div>
         
-        <a href="{{ url_for('home') }}">Home Page</a>
-        <a href="{{ url_for('about') }}">About Page</a>
-        <a href="{{ url_for('login') }}">Login Page</a>
-        <a href="{{ url_for('register') }}">Register Page</a>
-        {% block body_content %}{% endblock %}
+        <div class="sidebar">
+            <a href="{{ url_for('home') }}">Home Page</a>
+            <a href="{{ url_for('about') }}">About Page</a>
+            <a href="{{ url_for('login') }}">Login Page</a>
+            <a href="{{ url_for('register') }}">Register Page</a>
+        </div>
+        
+        <div class="content">
+            {% block body_content %}{% endblock %}
+        </div>
     </body>
 </html>
