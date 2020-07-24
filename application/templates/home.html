@@ -4,8 +4,8 @@
     {% for post in posts %}
         <div>
             <h3>{{ post.title }}</h3>
-            <p><b> - First name:</b>{{ post.name.first }}</p>
-            <p><b> - Last name:</b>{{ post.name.last }}</p>
+            <p><b> - First name:</b>{{ post.first_name }}</p>
+            <p><b> - Last name:</b>{{ post.last_name }}</p>
             <p> -- {{ post.content }}</p>
         </div>
     {% endfor %}
