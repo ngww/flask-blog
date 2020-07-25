@@ -24,7 +24,7 @@ class PostForm(FlaskForm):
     content = StringField('Content',
         validators = [
             DataRequired(),
-            Length(min=2, max=1000)
+            Length(min=2, max=500)
         ]
     )
     submit = SubmitField('Post!')
