@@ -1,11 +1,12 @@
 # import render_template function from the flask module
-from flask import render_template, redirect, url_for
+from flask import render_template, redirect, url_for, request
 # import the app object from the ./application/__init__.py
 from application import app, db, bcrypt
 # define routes for / & /home, this function will be called when these are accessed
 
+from flask_login import login_user, current_user, logout_user, login_required
 from application.models import Posts, Users
-from application.forms import PostForm, RegistrationForm
+from application.forms import PostForm, RegistrationForm, LoginForm
 
 @app.route('/')
 @app.route('/home')
@@ -15,11 +16,23 @@ def home():
           
 @app.route('/about') 
 def about():
-    return render_template('home.html', title='About')
+    return render_template('about.html', title='About')
           
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login(): 
-    return render_template('home.html', title='Login')
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    form = LoginForm()
+    if form.validate_on_submit():
+        user=Users.query.filter_by(email=form.email.data).first()
+        if user and bcrypt.check_password_hash(user.password, form.password.data):
+            login_user(user, remember=form.remember.data)
+            next_page = request.args.get('next')
+            if next_page:
+                return redirect(next_page)
+            else:
+                return redirect(url_for('home'))
+    return render_template('login.html', title='Login', form=form)
 
 @app.route('/register', methods=['GET', 'POST']) 
 def register():
@@ -33,9 +46,10 @@ def register():
         db.session.commit()
 
         return redirect(url_for('post'))
-    return render_template('home.html', title='Register', form=form)
+    return render_template('register.html', title='Register', form=form)
 
 @app.route('/post', methods=['GET', 'POST'])
+@login_required
 def post():
     form = PostForm()
     if form.validate_on_submit():
@@ -55,3 +69,8 @@ def post():
         print(form.errors)
 
     return render_template('post.html', title='Post', form=form)
+
+@app.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
