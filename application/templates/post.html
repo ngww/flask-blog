@@ -1,21 +1,63 @@
 {% extends "layout.html" %}
 {% block body_content %}
-    <div class='form'>
+
+<!-- The 'form-group' class means that the item in the form will be grouped when displayed -->
+    <div class='form-group'>
         <form method='POST' action=''>
             {{ form.hidden_tag() }}
             {{ form.first_name.label }}
             {{ form.first_name }}
+	    
+	    <!-- if the form has any errors -->
+	    {% if form.first_name.errors %}
+	    	<!-- surrounded the display errors in a div tag so that it can be edited in the css file -->
+		<div class="error">
+			{% for error in form.first_name.errors %}
+				<span>{{ error }}</span>
+			<!-- ends the for loop -->
+			{% endfor %}
+		</div>
+	    <!-- ends the if statement -->
+	    {% endif %}
             <br>
+
             {{ form.last_name.label }}
             {{ form.last_name }}
+
+	    {% if form.last_name.errors %}
+	        <div class="error">
+			{% for error in form.last_name.errors %}
+				<span>{{ error }}</span>
+			{% endfor %}
+		</div>
+	    {% endif %}
             <br>
-            {{ form.title.label }}
-            {{ form.title }}
+
+            {{ form.title.label }}            
+	    {{ form.title }}
+
+	    {% if form.title.errors %}
+                <div class="error">
+                        {% for error in form.title.errors %}
+                                <span>{{ error }}</span>
+                        {% endfor %}
+                </div>
+            {% endif %}
             <br>
+
             {{ form.content.label }}
             {{ form.content }}
+
+	    {% if form.content.errors %}
+                <div class="error">
+                        {% for error in form.content.errors %}
+                                <span>{{ error }}</span>
+                        {% endfor %}
+                </div>
+            {% endif %}
             <br>
             {{ form.submit }}
         </form>
     </div>
+
 {% endblock %}
