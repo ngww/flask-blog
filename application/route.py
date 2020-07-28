@@ -97,3 +97,14 @@ def account():
         form.last_name.data = current_user.last_name        
         form.email.data = current_user.email        
     return render_template('account.html', title='Account', form=form)
+
+@app.route('/password', methods=['GET', 'POST'])
+@login_required
+def password():
+    form = UpdatePasswordForm()
+    if form.validate_on_submit():
+        if current_user.password == form.current_password.data:
+            current_user.password = form.new_password.data
+            db.session.commit()
+            return redirect(url_for('password'))
+    return render_template('password.html', title='Password', form=form)
