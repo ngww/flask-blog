@@ -14,13 +14,16 @@
         <div class="sidebar">
             <a href="{{ url_for('home') }}">Home</a>
             <a href="{{ url_for('about') }}">About</a>
-	    {% if current_user.is_authenticated %}
-	    	<a href="{{ url_for('logout') }}">Logout</a>
-	    {% else %}
-	        <a href="{{ url_for('login') }}">Login</a>
-	    {% endif %}
+            <a href="{{ url_for('post') }}">Post</a>
             <a href="{{ url_for('register') }}">Register</a>
-	    <a href="{{ url_for('post') }}">Post</a>
+            {% if current_user.is_authenticated %}
+	    	    <a href="{{ url_for('logout') }}">Logout</a>
+            {% else %}
+                <a href="{{ url_for('login') }}">Login</a>
+            {% endif %}
+            {% if current_user.is_authenticated %}
+                <a href="{{ url_for('account') }}">Account</a>
+            {% endif %}
         </div>
         
         <div class="content">
