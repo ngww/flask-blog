@@ -97,25 +97,3 @@ class UpdateAccountForm(FlaskForm):
             user = Users.query.filter_by(email=email.data).first()
             if user:
                 raise ValidationError('Email already in use')
-
-class UpdatePasswordForm(FlaskForm):
-    current_password = PasswordField('Current Password',
-        validators=[
-            DataRequired()
-        ])
-    new_password = PasswordField('New Password',
-        validators=[
-            DataRequired()
-        ])
-    confirm_password = PasswordField('Confirm Password',
-        validators = [
-            DataRequired(),
-            EqualTo('new_password')
-        ]
-    )
-    submit = SubmitField('Update')
-
-    def validate_password(self, current_password):
-        user = Users.query.filter_by(email=email.data).first()
-        if current_password != current_user.password:
-            raise ValidationError('Password do not match what is in database')
