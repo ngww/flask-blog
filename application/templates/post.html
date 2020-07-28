@@ -2,33 +2,36 @@
 {% block body_content %}
 
 <!-- The 'form-group' class means that the item in the form will be grouped when displayed -->
-    <div class='form-group'>
+    <div class='form'>
         <form method='POST' action=''>
             {{ form.hidden_tag() }}
-            {{ form.title.label }}            
-	    {{ form.title }}
+            <div class='form-group'> 
+                {{ form.title.label }}            
+                {{ form.title }}
 
-	    {% if form.title.errors %}
-                <div class="error">
-                        {% for error in form.title.errors %}
-                                <span>{{ error }}</span>
-                        {% endfor %}
-                </div>
-            {% endif %}
+                {% if form.title.errors %}
+                    <div class="error">
+                            {% for error in form.title.errors %}
+                                    <span>{{ error }}</span>
+                            {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
             <br>
+            <div class='form-group'> 
+                {{ form.content.label }}
+                {{ form.content }}
 
-            {{ form.content.label }}
-            {{ form.content }}
-
-	    {% if form.content.errors %}
+            {% if form.content.errors %}
                 <div class="error">
                         {% for error in form.content.errors %}
                                 <span>{{ error }}</span>
                         {% endfor %}
                 </div>
             {% endif %}
+            </div>
             <br>
-            {{ form.submit }}
+                {{ form.submit }}
         </form>
     </div>
 
