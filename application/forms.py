@@ -115,5 +115,6 @@ class UpdatePasswordForm(FlaskForm):
     )
 
     def validate_password(self, current_password):
+        user = Users.query.filter_by(email=email.data).first()
         if current_password != current_user.password:
-            rais ValidationError('Password do not match what is in database')
+            raise ValidationError('Password do not match what is in database')
