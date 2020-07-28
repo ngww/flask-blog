@@ -19,8 +19,8 @@
                 <!-- ends the if statement -->
                 {% endif %}
             </div>  
+	    <br>
             <div class='form-group'>
-            <br>
                 {{ form.last_name.label }}
                 {{ form.last_name }}
                 {% if form.last_name.errors %}
@@ -30,8 +30,8 @@
                             {% endfor %}
                     </div>
                 {% endif %}
-            <br>
             </div>
+	    <br>
             <div class='form-group'>
                 {{ form.email.label }}
                 {{ form.email }}
