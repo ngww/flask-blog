@@ -12,9 +12,6 @@
         </div>
         
         <div class="sidebar">
-            {% if current_user.is_authenticated %}
-                <p>Welcome {{ post.author.first_name }} {{ post.author.last_name }}</p>
-            {% endif %}
             <a href="{{ url_for('home') }}">Home</a>
             <a href="{{ url_for('about') }}">About</a>
             <a href="{{ url_for('post') }}">Post</a>
