@@ -113,6 +113,7 @@ class UpdatePasswordForm(FlaskForm):
             EqualTo('new_password')
         ]
     )
+    submit = SubmitField('Update')
 
     def validate_password(self, current_password):
         user = Users.query.filter_by(email=email.data).first()
